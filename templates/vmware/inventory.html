@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block css-content %}
+    <link rel="stylesheet" href="/static/datatable/datatables.min.css">
+    <link rel="stylesheet" href="/static/datatable/Buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/static/datatable/Select/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="/static/css/vmware/inventory.css">
+{% endblock %}
+
+
+{% block body-content %}
+    <div class="content">
+        <table id="tb_vm_inventory" class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Hostname</th>
+                    <th>VCenter</th>
+                    <th>OS</th>
+                    <th>State</th>
+                    <th>vCPU</th>
+                    <th>Memory</th>
+                    <th>IP</th>
+                    <th>Path</th>
+                </tr>
+            </thead>
+        </table>
+        <div id="loaderIcon" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js-content %}
+    <script src="/static/datatable/datatables.min.js"></script>
+    <script src="/static/datatable/Buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/static/datatable/Select/js/dataTables.select.min.js"></script>
+    <script src="/static/js/vmware/inventory.js"></script>
+{% endblock %}

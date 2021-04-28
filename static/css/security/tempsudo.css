@@ -1,0 +1,6 @@
+.modal-dialog {
+    max-width: 800px;
+}
+table td:nth-child(3) {
+    word-break:break-all;
+}

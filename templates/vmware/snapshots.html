@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block css-content %}
+    <link rel="stylesheet" href="/static/datatable/datatables.min.css">
+    <link rel="stylesheet" href="/static/datatable/Buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/static/datatable/Select/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="/static/css/vmware/snapshots.css">
+{% endblock %}
+
+
+{% block body-content %}
+    <div class="content">
+        <table id="tb_snapshot_list" class="ui celled table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>VM</th>
+                <th>VC</th>
+                <th>PATH</th>
+                <th>CREATED AT</th>
+                <th>KEEP</th>
+                <th>SNAP_NAME</th>
+                <th>SNAP_DESC</th>
+                <th>OPERATOR</th>
+                <th>STATE</th>
+            </tr>
+            </thead>
+        </table>
+        <div id="loaderIcon" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_create_snapshots" tabindex="-1" aria-labelledby="modal_create_snapshots_label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_create_snapshots_label">Deploy VM From Template</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>{% csrf_token %}
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Datacenter</label>
+                            </div>
+                            <div class="col-10">
+                                <select name="vcenter" class="form-control" v-model="vcSelected">
+                                    <option selected value="">SELECT vCenter</option>
+                                    {% for i in data.vcenter_list %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Hostname</label>
+                            </div>
+                            <div class="col-10">
+                                <textarea v-model="hostname" class="form-control"
+                                          placeholder="Hostname like lvs-sacbs-001"></textarea>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Snapshot Name</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" class="form-control" v-model="snapshotName"
+                                       placeholder="Snapshot name,current datatime will be used if empty"></input>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Description</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" class="form-control" v-model="description"
+                                       placeholder="Put ticket number and/or decription here"></input>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Keep Days</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="number" class="form-control" v-model="keepDays"
+                                       placeholder="Snapshot will removed after certain days"></input>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" id="create_snapshots_reset" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="button" @click="submitTask" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js-content %}
+    <script src="/static/datatable/datatables.min.js"></script>
+    <script src="/static/datatable/Buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/static/datatable/Select/js/dataTables.select.min.js"></script>
+    <script src="/static/js/vmware/snapshots.js"></script>
+{% endblock %}

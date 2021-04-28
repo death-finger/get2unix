@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - /opt/get2unix/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123
+      - MYSQL_DATABASE=get2unix
+      - MYSQL_USER=get2unix
+      - MYSQL_PASSWORD=abc123
+  cache:
+    image: redis:6
+    volumes:
+      - /opt/get2unix/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+  db-migrate:
+    image: get2unix:0.2
+    volumes:
+      - /opt/get2unix/get2unix:/code
+    command: python3 manage.py migrate
+    depends_on:
+      - db
+      - cache
+  celery:
+    image: get2unix:0.2
+    volumes:
+      - /opt/get2unix/get2unix:/code
+      - /opt/get2unix/terraform:/terraform
+    command: celery -A get2unix worker -l info
+    depends_on:
+      - db
+      - cache
+  celery-beat:
+    image: get2unix:0.2
+    volumes:
+      - /opt/get2unix/get2unix:/code
+    command: celery -A get2unix beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    depends_on:
+      - db
+      - cache
+  web:
+    image: get2unix:0.2
+    volumes:
+      - /opt/get2unix/get2unix:/code
+      - /opt/get2unix/vulsctl:/vulsctl
+    ports:
+      - "8000:8000"
+    command: python3 manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+      - cache
+      - celery
+      - celery-beat

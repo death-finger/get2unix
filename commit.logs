@@ -1,0 +1,5 @@
+1. add sudoscan task and rewrite tempsudo task in apps/security/tasks.py
+2. add apps/api/views/security_api.py
+3. add apps/security/views/sudoscan.py
+4. add sudoscan related models in apps/security/models.py
+5. rewrite run_task in utils/awx_client.py

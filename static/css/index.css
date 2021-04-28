@@ -1,0 +1,8 @@
+#inventory_status,#inventory_location,#inventory_category,#inventory_owner{
+    width: 100%;
+    height: 300px;
+}
+#vc_chart {
+    width: 100%;
+    height: 600px;
+}

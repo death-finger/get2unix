@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block css-content %}
+    <link rel="stylesheet" href="/static/css/security/permsudo/usergroups.css">
+    <link rel="stylesheet" href="/static/datatable/datatables.min.css">
+    <link rel="stylesheet" href="/static/datatable/Buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/static/datatable/Select/css/select.dataTables.min.css">
+{% endblock %}
+
+
+{% block body-content %}
+    <div class="header">
+        <h1>Permanent Sudo Management</h1>
+    </div>
+    <div class="content">
+        <div class="pure-g">
+            <div class="pure-u-24-24">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="/security/permsudo/" class="pure-menu-link">Sudo Configs</a>
+                        </li>
+                        <li class="pure-menu-item pure-menu-selected"><a href="/security/permsudo/usergroups/"
+                                                                         class="pure-menu-link">User Groups</a></li>
+                        <li class="pure-menu-item"><a href="/security/permsudo/hostgroups/" class="pure-menu-link">Host
+                            Groups</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-24-24">
+                <table id="tb_usergroups_list" class="ui celled table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Group</th>
+                        <th>Users</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js-content %}
+    <script src="/static/datatable/datatables.min.js"></script>
+    <script src="/static/datatable/Buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/static/datatable/Select/js/dataTables.select.min.js"></script>
+    <script src="/static/js/security/permsudo/usergroups.js"></script>
+{% endblock %}

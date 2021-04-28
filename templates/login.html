@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Get2Unix </title>
+
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/static/fontawesome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body class="login">
+<div>
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form role="form" method="post">{% csrf_token %}
+                    <h1>Login OpsManage</h1>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="username" required="" placeholder="Username"
+                               aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="password" required="" placeholder="Password"
+                               aria-label="Password" aria-describedby="basic-addon1">
+                    </div>
+                    <button type="submit" class="btn btn-outline-info">Login</button>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <div class="clearfix"></div>
+                        <br/>
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Get2Unix </h1>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>

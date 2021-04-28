@@ -1,0 +1,11 @@
+.modal-dialog {
+    max-width: 800px;
+}
+#tb_deploy_list td {
+    font-size: 12px;
+}
+
+/*#loaderIcon {*/
+/*    margin-left: 50%;*/
+/*    margin-top: 20%;*/
+/*}*/
