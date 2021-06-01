@@ -31,6 +31,7 @@ class SudoTasks(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     effective_days = models.SmallIntegerField(default=3, null=False, unique=False)
     status = models.SmallIntegerField(choices=status_choices, default=0)
+    nopasswd = models.BooleanField(default=False)
 
     class Meta:
         permissions = [

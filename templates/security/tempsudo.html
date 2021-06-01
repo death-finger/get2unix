@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-7">
                                 <textarea type="text" v-model="users" class="form-control"
-                                       placeholder="username or +groupname"></textarea>
+                                          placeholder="username or +groupname"></textarea>
                             </div>
                             <div class="col-3">
                                 <span class="form-text">
@@ -97,10 +97,24 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-2">
+                                <label class="col-form-label">NOPASSWD?</label>
+                            </div>
+                            <div class="col-7 form-check">
+                                <input class="form-check-input" type="checkbox" v-model="nopasswd" style="margin-top: 5px; margin-left: 2px">
+                            </div>
+                            <div class="col-3">
+                                <span class="form-text">
+                                    SET NOPASSWD: [{ nopasswd }]
+                                </span>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" id="add_sudo_reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="reset" id="add_sudo_reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                    </button>
                     <button type="button" @click="submitTask" class="btn btn-primary">Submit</button>
                 </div>
             </div>

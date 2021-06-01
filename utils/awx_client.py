@@ -72,7 +72,8 @@ class AwxApi():
                 users_remove.append(user[1:] if user.startswith('+') else user)
             template_name = AWX_SUDO_TEMPLATE
             job_vars = {'USERS': job_args['sudo_user'], 'USERS_REMOVE': users_remove, 'DATE': time.ctime(),
-                        'OPERATOR': job_args['operator'], 'TICKET': job_args['ticket']}
+                        'OPERATOR': job_args['operator'], 'TICKET': job_args['ticket'],
+                        'NOPASSWD': "NOPASSWD:" if job_args['nopasswd'] else ""}
             job_tags = job_args['tag']
         # task_type == 1: sudo collector
         elif job_args['task_type'] == 1:

@@ -51,13 +51,15 @@ class SudoTask(LoginRequiredMixin, PermissionRequiredMixin, View):
             hosts = request.POST.get('hosts').lstrip().rstrip().split('\n')
             ticket = request.POST.get('ticket')
             days = request.POST.get('effective_days')
+            nopasswd = True if request.POST.get('nopasswd') != "false" else False
             data = {
                 'users': json.dumps(users),
                 'operator': request.user.username,
                 'ticket': ticket,
                 'hosts': json.dumps(hosts),
                 'effective_days': days,
-                'status': 0
+                'status': 0,
+                'nopasswd': nopasswd,
             }
             SudoTasks.objects.create(**data)
 

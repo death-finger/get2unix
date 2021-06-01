@@ -87,6 +87,7 @@ let addSudoObj = new Vue({
         hosts: "",
         ticket: "",
         effective_days: 3,
+        nopasswd: false
     },
     methods: {
         submitTask: function () {
@@ -96,6 +97,7 @@ let addSudoObj = new Vue({
             params.append('ticket', this.ticket);
             params.append("effective_days", this.effective_days);
             params.append('action', 'add');
+            params.append('nopasswd', this.nopasswd);
             if (params.get("hosts").length === 0 ||
                 params.get("users").length === 0) {
                 PNotify.alert({

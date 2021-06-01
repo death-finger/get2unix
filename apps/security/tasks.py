@@ -32,6 +32,7 @@ def execute_task(task_list, task_type, awx_client):
                     'sudo_user': json.loads(item.users),
                     'operator': item.operator,
                     'ticket': item.ticket,
+                    'nopasswd': item.nopasswd,
                     'tag': 'add' if task_type == 0 else 'remove'
                 }
             # collector
