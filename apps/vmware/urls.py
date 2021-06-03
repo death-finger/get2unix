@@ -16,9 +16,23 @@ Including another URLconf
 from django.conf.urls import url
 from .views import deploy, snapshots, inventory
 
-urlpatterns = [
-    url(r'^$', inventory.Index.as_view()),
-    url(r'^inventory/$', inventory.Index.as_view()),
-    url(r'^snapshots/$', snapshots.BulkTakeSnapshot.as_view()),
-    url(r'^deploy/$', deploy.BulkDeployVM.as_view()),
-]
+from rest_framework.routers import DefaultRouter
+
+
+# urlpatterns = [
+#     url(r'^$', inventory.Index.as_view()),
+#     url(r'^inventory/$', inventory.Index.as_view()),
+#     url(r'^snapshots/$', snapshots.BulkTakeSnapshot.as_view()),
+#     url(r'^deploy/$', deploy.BulkDeployVM.as_view()),
+# ]
+
+# urlpatterns = [
+#     url(r'^inventory/$', inventory.InventoryView.as_view()),
+#     url(r'^snapshots/$', snapshots.BulkTakeSnapshot.as_view()),
+#     url(r'^deploy/$', deploy.DeployView.as_view()),
+# ]
+
+router = DefaultRouter()
+router.register(r'inventory', inventory.InventoryViewSet, basename='inventory')
+router.register(r'deploy', deploy.DeployViewSet, basename='deploy')
+urlpatterns = router.urls

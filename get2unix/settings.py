@@ -100,8 +100,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_celery_results',
     'django_celery_beat',
+    'rest_framework',
     'get2unix',
-    'api',
+    # 'api',
     'security',
     'vmware',
 ]
@@ -240,6 +241,19 @@ if config.get('ldap', 'enable') != 'false':
         'last_name': 'sn',
         'email': 'mail',
     }
+
+##########################
+# Rest Framework Settings#
+##########################
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 
 ##########################

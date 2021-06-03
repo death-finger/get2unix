@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^logout/$', index.logout),
     url(r'^403/$', index.AccessDenied.as_view()),
     url(r'^404/$', index.PageNotFound.as_view()),
-    url(r'^api/', include('api.urls')),
-    url(r'^vmware/', include('vmware.urls')),
-    url(r'^security/', include('security.urls')),
+    # url(r'^api/', include('api.urls')),
+    url(r'^v1/vmware/', include('vmware.urls')),
+    url(r'^v1/security/', include('security.urls')),
 ]
