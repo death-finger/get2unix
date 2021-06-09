@@ -49,4 +49,3 @@ class DeployViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=deploy_dict)
         serializer.is_valid()
         serializer.save()
-        print('OK')

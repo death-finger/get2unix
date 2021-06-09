@@ -35,4 +35,5 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'inventory', inventory.InventoryViewSet, basename='inventory')
 router.register(r'deploy', deploy.DeployViewSet, basename='deploy')
+router.register(r'snapshot', snapshots.SnapshotViewSet, basename='snapshot')
 urlpatterns = router.urls
